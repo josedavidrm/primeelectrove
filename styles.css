@@ -1,0 +1,659 @@
+/* ========================================
+   RESET Y BASE
+   ======================================== */
+* { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+}
+
+html, body { 
+  margin: 0; 
+  padding: 0; 
+  height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: #0a0e14;
+  color: #e5e7eb;
+  line-height: 1.6;
+}
+
+/* ========================================
+   LAYOUT Y CONTENEDORES
+   ======================================== */
+.container { 
+  max-width: 1200px; 
+  margin: 0 auto; 
+  padding: 0 24px; 
+}
+
+main.container { 
+  padding: 32px 24px; 
+  min-height: calc(100vh - 200px);
+}
+
+/* ========================================
+   TOPBAR Y NAVEGACIÓN
+   ======================================== */
+.topbar { 
+  background: linear-gradient(135deg, #0b0d12 0%, #151823 100%);
+  border-bottom: 1px solid #222634; 
+  position: sticky; 
+  top: 0; 
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.nav { 
+  display: flex; 
+  align-items: center; 
+  gap: 20px; 
+  padding: 16px 0;
+  flex-wrap: wrap;
+}
+
+.brand { 
+  color: #fff; 
+  text-decoration: none; 
+  font-weight: 700; 
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, #00d4ff 0%, #1f6feb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.menu { 
+  margin-left: auto; 
+  display: flex; 
+  align-items: center; 
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.menu a { 
+  color: #e5e7eb; 
+  text-decoration: none; 
+  padding: 8px 14px; 
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.menu a:hover { 
+  background: #1b2030;
+  color: #00d4ff;
+}
+
+.hello { 
+  color: #9ca3af; 
+  font-size: 0.9rem; 
+  margin: 0 8px;
+  padding: 6px 12px;
+  background: #1a1f2d;
+  border-radius: 6px;
+}
+
+/* ========================================
+   BÚSQUEDA
+   ======================================== */
+.search { 
+  display: flex; 
+  gap: 8px;
+  flex: 1;
+  max-width: 400px;
+}
+
+.search input {
+  flex: 1;
+  padding: 10px 14px; 
+  border-radius: 10px; 
+  border: 1px solid #2a3042; 
+  background: #0f1320; 
+  color: #e5e7eb;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.search input:focus {
+  outline: none;
+  border-color: #1f6feb;
+  box-shadow: 0 0 0 3px rgba(31, 111, 235, 0.1);
+}
+
+.search button {
+  padding: 10px 18px; 
+  border: none; 
+  border-radius: 10px; 
+  background: linear-gradient(135deg, #1f6feb 0%, #0d4fb8 100%);
+  color: #fff; 
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.search button:hover { 
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(31, 111, 235, 0.4);
+}
+
+/* ========================================
+   TIPOGRAFÍA
+   ======================================== */
+h1 { 
+  font-size: 2rem; 
+  margin: 24px 0 20px 0;
+  font-weight: 700;
+  color: #fff;
+}
+
+h2 { 
+  font-size: 1.5rem; 
+  margin: 20px 0 16px 0;
+  font-weight: 600;
+  color: #e5e7eb;
+}
+
+h3 { 
+  font-size: 1.15rem; 
+  margin: 12px 0;
+  font-weight: 600;
+  color: #e5e7eb;
+}
+
+p {
+  margin: 12px 0;
+  line-height: 1.7;
+}
+
+/* ========================================
+   GRID DE PRODUCTOS
+   ======================================== */
+.grid {
+  display: grid; 
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px; 
+  margin: 32px 0 48px;
+}
+
+/* ========================================
+   TARJETAS (CARDS)
+   ======================================== */
+.card {
+  background: linear-gradient(135deg, #151823 0%, #1a1f2d 100%);
+  border: 1px solid #21273a; 
+  border-radius: 16px; 
+  overflow: hidden;
+  display: flex; 
+  flex-direction: column;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+  border-color: #2a3548;
+}
+
+.card img { 
+  width: 100%; 
+  height: 280px; 
+  object-fit: contain; 
+  background: #0f1320;
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover img {
+  transform: scale(1.08);
+}
+
+.card .body { 
+  padding: 20px; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 12px;
+  flex: 1;
+}
+
+.card .body h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.card .body p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #9ca3af;
+  line-height: 1.5;
+}
+
+.price { 
+  color: #00d4ff; 
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin: 8px 0;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+/* ========================================
+   BOTONES
+   ======================================== */
+.btn {
+  padding: 12px 20px; 
+  border: none; 
+  border-radius: 10px; 
+  cursor: pointer; 
+  color: #fff; 
+  background: linear-gradient(135deg, #1f6feb 0%, #0d4fb8 100%);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn:hover { 
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(31, 111, 235, 0.4);
+}
+
+.btn.secondary { 
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+}
+
+.btn.secondary:hover { 
+  box-shadow: 0 6px 16px rgba(55, 65, 81, 0.4);
+}
+
+.btn:disabled { 
+  background: #2a3042; 
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+}
+
+.btn:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* ========================================
+   FORMULARIOS
+   ======================================== */
+form.card { 
+  background: linear-gradient(135deg, #151823 0%, #1a1f2d 100%);
+  border: 1px solid #21273a; 
+  border-radius: 16px;
+  padding: 24px;
+}
+
+form.card .row { 
+  display: grid; 
+  gap: 16px; 
+}
+
+label { 
+  display: block; 
+  font-size: 0.95rem; 
+  color: #cbd5e1;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+input[type="text"], 
+input[type="email"], 
+input[type="password"], 
+input[type="number"],
+input[type="file"],
+textarea,
+select {
+  width: 100%; 
+  padding: 12px 14px; 
+  border-radius: 10px; 
+  border: 1px solid #2a3042; 
+  background: #0f1320; 
+  color: #e5e7eb;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+input:focus,
+textarea:focus,
+select:focus { 
+  outline: none;
+  border-color: #1f6feb;
+  box-shadow: 0 0 0 3px rgba(31, 111, 235, 0.1);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* ========================================
+   TABLAS
+   ======================================== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+table th {
+  background: #1a1f2d;
+  padding: 14px;
+  text-align: left;
+  font-weight: 600;
+  color: #e5e7eb;
+  border-bottom: 2px solid #2a3042;
+}
+
+table td {
+  padding: 14px;
+  border-bottom: 1px solid #21273a;
+  color: #cbd5e1;
+}
+
+table tr:hover {
+  background: #1a1f2d;
+}
+
+/* ========================================
+   MENSAJES Y ALERTAS
+   ======================================== */
+.alert {
+  background: #1a1f2d; 
+  border: 1px solid #3a2530; 
+  color: #fca5a5;
+  padding: 16px 20px; 
+  border-radius: 12px; 
+  margin: 20px 0;
+  border-left: 4px solid #f87171;
+}
+
+.alert ul {
+  margin: 8px 0 0 20px;
+  padding: 0;
+}
+
+.alert li {
+  margin: 4px 0;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+.footer { 
+  border-top: 1px solid #222634; 
+  padding: 24px 0; 
+  color: #9ca3af; 
+  font-size: 0.9rem; 
+  text-align: center;
+  background: #0b0d12;
+  margin-top: 60px;
+}
+
+/* ========================================
+   UTILIDADES
+   ======================================== */
+small {
+  font-size: 0.85rem;
+  color: #9ca3af;
+}
+
+a {
+  color: #00d4ff;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #1f6feb;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .search {
+    max-width: 100%;
+  }
+
+  .menu {
+    margin-left: 0;
+    justify-content: center;
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  main.container {
+    padding: 20px 16px;
+  }
+
+  div[style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card img {
+    height: 240px;
+  }
+
+  .actions {
+    gap: 8px;
+  }
+
+  .btn {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+/* ========================================
+   ANIMACIONES
+   ======================================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* ========================================
+   MEJORAS VISUALES ADICIONALES
+   ======================================== */
+::selection {
+  background: #1f6feb;
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f1115;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a3042;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #374151;
+}
+
+/* ========================================
+   PÁGINAS DE AUTENTICACIÓN (LOGIN/REGISTER)
+   ======================================== */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 200px);
+  padding: 40px 20px;
+}
+
+.auth-card {
+  background: linear-gradient(135deg, #151823 0%, #1a1f2d 100%);
+  border: 1px solid #21273a;
+  border-radius: 20px;
+  padding: 40px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.auth-header h1 {
+  margin: 0 0 12px 0;
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+.auth-header p {
+  margin: 0;
+  color: #9ca3af;
+  font-size: 0.95rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+}
+
+.form-group input {
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid #2a3042;
+  background: #0f1320;
+  color: #e5e7eb;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #1f6feb;
+  box-shadow: 0 0 0 4px rgba(31, 111, 235, 0.1);
+}
+
+.form-group input::placeholder {
+  color: #6b7280;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #1f6feb 0%, #0d4fb8 100%);
+  padding: 14px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #21273a;
+}
+
+.auth-footer p {
+  margin: 0;
+  color: #9ca3af;
+  font-size: 0.95rem;
+}
+
+.auth-footer a {
+  color: #00d4ff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.auth-footer a:hover {
+  color: #1f6feb;
+}
+
+/* Responsive para formularios de auth */
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 30px 24px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .auth-header h1 {
+    font-size: 1.5rem;
+  }
+}
