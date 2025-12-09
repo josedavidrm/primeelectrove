@@ -16,7 +16,7 @@ if ($producto_id <= 0) {
     exit;
 }
 
-// Obtener producto
+
 $stmt = $pdo->prepare("SELECT * FROM productos WHERE id = ?");
 $stmt->execute([$producto_id]);
 $producto = $stmt->fetch();
@@ -42,13 +42,13 @@ if (strpos($img, 'http') !== 0) {
 
   <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start;">
     
-    <!-- Imagen del producto -->
+    
     <div class="card" style="padding:30px; text-align:center;">
       <img src="<?= h($img) ?>" alt="<?= h($producto['nombre_producto']) ?>" 
            style="max-width:100%; height:auto; max-height:500px; object-fit:contain; border-radius:12px;">
     </div>
 
-    <!-- Información del producto -->
+    
     <div>
       <h1 style="margin-top:0; font-size:2rem;"><?= h($producto['nombre_producto']) ?></h1>
       

@@ -2,7 +2,7 @@
 require_once __DIR__ . '/session.php';
 
 if (!defined('BASE_URL')) {
-    define('BASE_URL', ''); // Déjalo vacío si sirves directamente desde localhost/carpeta o localhost:3000
+    define('BASE_URL', ''); 
 }
 
 function h(?string $s): string {

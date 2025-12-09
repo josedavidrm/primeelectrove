@@ -30,10 +30,7 @@ if (!$factura) {
     die('Factura no encontrada o no tienes permiso para verla');
 }
 
-// Nota: Como vaciamos el carrito, necesitamos otra forma de obtener los productos
-// Opción 1: Crear tabla "factura_items" (recomendado para producción)
-// Opción 2: Mostrar solo el total (simplificado para este ejercicio)
-// Usaremos Opción 2 por simplicidad, pero te dejo comentado cómo sería con items
+
 
 $pageTitle = 'Factura #' . $factura['id'] . ' | PrimeElectrove';
 ?>

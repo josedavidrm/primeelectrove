@@ -4,11 +4,11 @@ error_reporting(E_ALL);
 
 echo "<h1>Test de configuración</h1>";
 
-// 1. Verificar sesión
+
 session_start();
 echo "<p>✅ Sesión iniciada</p>";
 
-// 2. Verificar conexión DB
+
 $DB_HOST = '127.0.0.1';
 $DB_NAME = 'primeelectrove';
 $DB_USER = 'root';
@@ -21,7 +21,7 @@ try {
   echo "<p>❌ Error de conexión: " . $e->getMessage() . "</p>";
 }
 
-// 3. Verificar que los archivos existen
+
 $archivos = ['config.php', 'helpers.php', 'auth.php', 'csrf.php', 'header.php', 'footer.php', 'index.php', 'register.php', 'login.php'];
 foreach ($archivos as $f) {
     if (file_exists(__DIR__ . '/' . $f)) {

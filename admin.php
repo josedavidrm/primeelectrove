@@ -1,5 +1,5 @@
 <?php
-// admin.php
+
 ini_set('display_errors','1');
 ini_set('display_startup_errors','1');
 error_reporting(E_ALL);
@@ -8,12 +8,12 @@ require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/helpers.php';
 require_once __DIR__ . '/auth.php';
 
-require_admin(); // Solo admins pueden acceder
+require_admin(); 
 
 $pageTitle = 'Panel de Administrador | PrimeElectrove';
 require_once __DIR__ . '/header.php';
 
-// Estadísticas rápidas
+
 $stmt = $pdo->query("SELECT COUNT(*) as total FROM productos");
 $total_productos = $stmt->fetch()['total'];
 

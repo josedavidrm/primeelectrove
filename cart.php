@@ -1,5 +1,5 @@
 <?php
-// cart.php
+
 ini_set('display_errors','1');
 ini_set('display_startup_errors','1');
 error_reporting(E_ALL);
@@ -16,7 +16,7 @@ require_once __DIR__ . '/header.php';
 
 $id_usuario = current_user_id();
 
-// Obtener items del carrito con info del producto
+
 $sql = "
   SELECT c.id as carrito_id, c.cantidad, p.id as producto_id, p.nombre_producto, p.precio_producto, p.imagen_url
   FROM carrito c
@@ -41,7 +41,7 @@ $total = 0;
 <?php else: ?>
   <div class="card" style="padding:16px; max-width:900px;">
     
-    <!-- Versión de tabla mejorada -->
+    
     <table style="width:100%; border-collapse:collapse; color:#e5e7eb;">
       <thead>
         <tr style="border-bottom:2px solid #2a3042; background:#1a1f2d;">
@@ -88,12 +88,12 @@ $total = 0;
       </tbody>
     </table>
 
-    <!-- Total -->
+    
     <div style="margin-top:20px; padding-top:16px; border-top:2px solid #2a3042; text-align:right;">
       <h2 style="color:#00d4ff; margin:0;">Total: <?= money($total) ?></h2>
     </div>
 
-    <!-- Botones de acción -->
+   
     <div style="margin-top:20px; display:flex; gap:12px; justify-content:flex-end;">
       <a class="btn secondary" href="index.php">Seguir comprando</a>
       <a class="btn" href="checkout.php">Proceder al pago</a>

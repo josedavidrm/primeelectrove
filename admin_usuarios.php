@@ -17,7 +17,7 @@ $usuario_id = (int)($_GET['id'] ?? 0);
 $errors = [];
 $success = '';
 
-// ELIMINAR USUARIO
+
 if ($action === 'delete' && $usuario_id > 0) {
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && csrf_validate()) {
         if ($usuario_id === current_user_id()) {
@@ -31,7 +31,7 @@ if ($action === 'delete' && $usuario_id > 0) {
     }
 }
 
-// CAMBIAR ROL (ascender/descender)
+
 if ($action === 'toggle_role' && $usuario_id > 0) {
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && csrf_validate()) {
         if ($usuario_id === current_user_id()) {
@@ -51,7 +51,7 @@ if ($action === 'toggle_role' && $usuario_id > 0) {
     }
 }
 
-// AGREGAR O EDITAR USUARIO
+
 if (($action === 'add' || $action === 'edit') && $_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!csrf_validate()) {
         $errors[] = 'Token CSRF inválido';
@@ -118,7 +118,7 @@ if (($action === 'add' || $action === 'edit') && $_SERVER['REQUEST_METHOD'] === 
     }
 }
 
-// OBTENER DATOS PARA EDITAR
+
 $usuario = null;
 if ($action === 'edit' && $usuario_id > 0) {
     $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE id = ?");
@@ -129,11 +129,11 @@ if ($action === 'edit' && $usuario_id > 0) {
     }
 }
 
-// LISTAR USUARIOS
+
 $stmt = $pdo->query("SELECT * FROM usuarios ORDER BY id DESC");
 $usuarios = $stmt->fetchAll();
 
-// Mensajes de éxito
+
 if (isset($_GET['success'])) {
     switch ($_GET['success']) {
         case 'added': $success = 'Usuario agregado correctamente'; break;
@@ -162,7 +162,7 @@ require_once __DIR__ . '/header.php';
   </div>
 <?php endif; ?>
 
-<!-- FORMULARIO AGREGAR/EDITAR -->
+
 <?php if ($action === 'add' || $action === 'edit'): ?>
   <div class="card" style="padding:20px; max-width:700px; margin-bottom:30px;">
     <h2><?= $action === 'add' ? 'Agregar Usuario' : 'Editar Usuario' ?></h2>
@@ -196,7 +196,7 @@ require_once __DIR__ . '/header.php';
   </div>
 <?php endif; ?>
 
-<!-- LISTA DE USUARIOS -->
+
 <?php if ($action === 'list'): ?>
   <div style="margin-bottom:20px;">
     <a class="btn" href="admin_usuarios.php?action=add">➕ Agregar usuario</a>
@@ -249,7 +249,7 @@ require_once __DIR__ . '/header.php';
   </div>
 <?php endif; ?>
 
-<!-- CONFIRMACIÓN DE ELIMINACIÓN -->
+
 <?php if ($action === 'delete' && $usuario_id > 0): ?>
   <?php
     $stmt = $pdo->prepare("SELECT nombre, apellido FROM usuarios WHERE id = ?");

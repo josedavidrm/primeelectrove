@@ -1,5 +1,5 @@
 <?php
-// admin_productos.php
+
 ini_set('display_errors','1');
 ini_set('display_startup_errors','1');
 error_reporting(E_ALL);
@@ -17,15 +17,15 @@ $producto_id = (int)($_GET['id'] ?? 0);
 $errors = [];
 $success = '';
 
-// ELIMINAR PRODUCTO
+
 if ($action === 'delete' && $producto_id > 0) {
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && csrf_validate()) {
-        // Obtener imagen para eliminarla del servidor
+        
         $stmt = $pdo->prepare("SELECT imagen_url FROM productos WHERE id = ?");
         $stmt->execute([$producto_id]);
         $prod = $stmt->fetch();
         
-        // Eliminar imagen si existe en imagenes/
+        
         if ($prod && $prod['imagen_url'] && strpos($prod['imagen_url'], 'imagenes/') === 0) {
             $ruta_imagen = __DIR__ . '/' . $prod['imagen_url'];
             if (file_exists($ruta_imagen)) {
@@ -40,7 +40,7 @@ if ($action === 'delete' && $producto_id > 0) {
     }
 }
 
-// AGREGAR O EDITAR PRODUCTO
+
 if (($action === 'add' || $action === 'edit') && $_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!csrf_validate()) {
         $errors[] = 'Token CSRF inválido';
@@ -62,7 +62,7 @@ if (($action === 'add' || $action === 'edit') && $_SERVER['REQUEST_METHOD'] === 
         $errors[] = 'Stock inválido';
     }
 
-    // PROCESAR SUBIDA DE IMAGEN
+    
     if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
         $archivo = $_FILES['imagen'];
         $nombre_archivo = $archivo['name'];
@@ -70,27 +70,27 @@ if (($action === 'add' || $action === 'edit') && $_SERVER['REQUEST_METHOD'] === 
         $size = $archivo['size'];
         $extension = strtolower(pathinfo($nombre_archivo, PATHINFO_EXTENSION));
         
-        // Validar extensión
+        
         $extensiones_permitidas = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
         if (!in_array($extension, $extensiones_permitidas)) {
             $errors[] = 'Solo se permiten imágenes (jpg, jpeg, png, gif, webp)';
         }
         
-        // Validar tamaño (máximo 5MB)
+        
         if ($size > 5 * 1024 * 1024) {
             $errors[] = 'La imagen no debe superar 5MB';
         }
         
         if (!$errors) {
-            // Generar nombre único
+            
             $nombre_unico = uniqid('producto_', true) . '.' . $extension;
             $ruta_destino = __DIR__ . '/imagenes/' . $nombre_unico;
             
-            // Mover archivo
+            
             if (move_uploaded_file($tmp_name, $ruta_destino)) {
                 $imagen_url = 'imagenes/' . $nombre_unico;
                 
-                // Si es edición, eliminar imagen anterior
+               
                 if ($action === 'edit' && $producto_id > 0) {
                     $stmt = $pdo->prepare("SELECT imagen_url FROM productos WHERE id = ?");
                     $stmt->execute([$producto_id]);
@@ -118,7 +118,7 @@ if (($action === 'add' || $action === 'edit') && $_SERVER['REQUEST_METHOD'] === 
             header('Location: admin_productos.php?success=added');
             exit;
         } elseif ($action === 'edit' && $producto_id > 0) {
-            // Si no se subió nueva imagen, mantener la anterior
+            
             if ($imagen_url === '') {
                 $stmt = $pdo->prepare("SELECT imagen_url FROM productos WHERE id = ?");
                 $stmt->execute([$producto_id]);
@@ -138,7 +138,7 @@ if (($action === 'add' || $action === 'edit') && $_SERVER['REQUEST_METHOD'] === 
     }
 }
 
-// OBTENER DATOS PARA EDITAR
+
 $producto = null;
 if ($action === 'edit' && $producto_id > 0) {
     $stmt = $pdo->prepare("SELECT * FROM productos WHERE id = ?");
@@ -149,11 +149,11 @@ if ($action === 'edit' && $producto_id > 0) {
     }
 }
 
-// LISTAR PRODUCTOS
+
 $stmt = $pdo->query("SELECT * FROM productos ORDER BY id DESC");
 $productos = $stmt->fetchAll();
 
-// Mensajes de éxito
+
 if (isset($_GET['success'])) {
     switch ($_GET['success']) {
         case 'added': $success = 'Producto agregado correctamente'; break;
@@ -181,12 +181,12 @@ require_once __DIR__ . '/header.php';
   </div>
 <?php endif; ?>
 
-<!-- FORMULARIO AGREGAR/EDITAR -->
+
 <?php if ($action === 'add' || $action === 'edit'): ?>
   <div class="card" style="padding:20px; max-width:700px; margin-bottom:30px;">
     <h2><?= $action === 'add' ? 'Agregar Producto' : 'Editar Producto' ?></h2>
     
-    <!-- Mostrar imagen actual si existe -->
+    
     <?php if ($action === 'edit' && $producto['imagen_url']): ?>
       <div style="margin-bottom:16px;">
         <p style="margin-bottom:8px;"><strong>Imagen actual:</strong></p>
@@ -234,7 +234,7 @@ require_once __DIR__ . '/header.php';
   </div>
 <?php endif; ?>
 
-<!-- LISTA DE PRODUCTOS -->
+
 <?php if ($action === 'list'): ?>
   <div style="margin-bottom:20px;">
     <a class="btn" href="admin_productos.php?action=add">➕ Agregar producto</a>
@@ -275,7 +275,7 @@ require_once __DIR__ . '/header.php';
   </div>
 <?php endif; ?>
 
-<!-- CONFIRMACIÓN DE ELIMINACIÓN -->
+
 <?php if ($action === 'delete' && $producto_id > 0): ?>
   <?php
     $stmt = $pdo->prepare("SELECT nombre_producto FROM productos WHERE id = ?");

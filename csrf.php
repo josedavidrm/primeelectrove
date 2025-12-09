@@ -1,5 +1,5 @@
 <?php
-// csrf.php
+
 require_once __DIR__ . '/session.php';
 
 function csrf_token(): string {
